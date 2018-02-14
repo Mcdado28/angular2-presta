@@ -2,6 +2,7 @@
   "name": "angular2-presta",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "version": "0.1.7",
   "scripts": {
     "lint": "tslint src/**/*.ts",
@@ -13,6 +14,9 @@
 =======
   "version": "0.1.12",
 >>>>>>> 0f185f3... 0.1.12
+=======
+  "version": "0.1.13",
+>>>>>>> 541c927... 0.1.13
   "scripts": {
     "build": "gulp build",
     "build:watch": "gulp",
