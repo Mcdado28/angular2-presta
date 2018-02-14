@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+<<<<<<< HEAD
     "noImplicitAny": true,
     "module": "commonjs",
     "target": "ES5",
@@ -19,4 +20,17 @@
     "node_modules",
     "dist"
   ]
+=======
+    "baseUrl": "./src",
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "rootDir": "./src",
+    "lib": [
+      "es2015",
+      "dom"
+    ],
+    "skipLibCheck": true,
+    "types": []
+  }
+>>>>>>> 927ad77... updated to use httpclient
 }

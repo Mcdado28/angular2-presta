@@ -3,9 +3,15 @@ node_modules/*
 npm-debug.log
 
 # TypeScript
+<<<<<<< HEAD
 *.js
 *.map
 *.d.ts
+=======
+src/*.js
+src/*.map
+src/*.d.ts
+>>>>>>> 927ad77... updated to use httpclient
 
 # JetBrains
 .idea
@@ -24,3 +30,16 @@ Desktop.ini
 # Mac
 .DS_Store
 **/.DS_Store
+<<<<<<< HEAD
+=======
+
+# Ngc generated files
+**/*.ngfactory.ts
+
+# Build files
+dist/*
+
+# Playground tmp files
+playground/*
+.playground
+>>>>>>> 927ad77... updated to use httpclient

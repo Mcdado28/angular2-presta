@@ -1,7 +1,11 @@
 # Node
 node_modules/*
 npm-debug.log
+<<<<<<< HEAD
 
+=======
+docs/*
+>>>>>>> 927ad77... updated to use httpclient
 # DO NOT IGNORE TYPESCRIPT FILES FOR NPM
 # TypeScript
 # *.js
@@ -25,3 +29,13 @@ Desktop.ini
 # Mac
 .DS_Store
 **/.DS_Store
+<<<<<<< HEAD
+=======
+
+# Ngc generated files
+**/*.ngfactory.ts
+
+# Library files
+src/*
+build/*
+>>>>>>> 927ad77... updated to use httpclient

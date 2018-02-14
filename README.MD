@@ -2,9 +2,15 @@
 
 # angular2-presta
 
+<<<<<<< HEAD
 Angular 2 services for consuming PrestaShop API ...
 
 This library should help developers coding angular 2 and ionic 2 apps consuming PrestaShop API.
+=======
+Angular services for consuming PrestaShop API ...
+
+This library should help developers coding Angular and Ionic apps consuming PrestaShop API.
+>>>>>>> 927ad77... updated to use httpclient
 
 ## Installation
 
@@ -16,11 +22,16 @@ $ npm install angular2-presta --save
 
 ## Bootstrap
 
+<<<<<<< HEAD
 and then from your Angular 2 App Module:
+=======
+and then from your Angular App Module:
+>>>>>>> 927ad77... updated to use httpclient
 
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+<<<<<<< HEAD
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
@@ -28,6 +39,16 @@ import { AppComponent } from './app.component';
 
 // Import angular2-presta module
 import { PrestaModule, PrestaConfiguration } from 'angular2-presta';
+=======
+
+// Import HttpClientModule
+import { HttpClientModule } from '@angular/common/http';
+
+// Import PrestaModule module
+import { PrestaModule, PrestaConfiguration, PrestaService } from 'angular2-presta';
+
+import { AppComponent } from './app.component';
+>>>>>>> 927ad77... updated to use httpclient
 
 // Add your presta web service api key and shop url
 export const prestaConfiguration: PrestaConfiguration = {
@@ -42,9 +63,17 @@ export const prestaConfiguration: PrestaConfiguration = {
   ],
   imports: [
     BrowserModule,
+<<<<<<< HEAD
     PrestaModule.forRoot(prestaConfiguration)
   ],
   providers: [],
+=======
+    HttpClientModule,
+    PrestaModule.forRoot(prestaConfiguration)
+  ],
+  // provide presta service as global
+  providers: [PrestaService],
+>>>>>>> 927ad77... updated to use httpclient
   bootstrap: [AppComponent]
 })
 export class AppModule { }
@@ -53,15 +82,24 @@ export class AppModule { }
 ## Using PrestaService
 
 ```typescript
+<<<<<<< HEAD
 import { Component } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 
 // Import presta service and Query
 import { PrestaService, Query } from 'angular2-presta';
+=======
+import { Component, OnDestroy } from '@angular/core';
+
+// Import presta service and Query
+import { PrestaService, PrestaQuery } from './presta/presta.module';
+import { Observable } from 'rxjs/Observable';
+>>>>>>> 927ad77... updated to use httpclient
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
+<<<<<<< HEAD
   styleUrls: ['./app.component.css'],
   providers: [PrestaService]
 })
@@ -88,6 +126,49 @@ export class AppComponent {
     this._prestaService.get(this.query)
                        .subscribe(results => this.items = results);
 
+=======
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent implements OnDestroy {
+
+  // store subscription to presta webservice so we can unsuscribe later
+  subscription: any;
+
+  // List of products
+  products: Observable<any>;
+
+  // construct query
+  query: PrestaQuery = {
+    // define resource products, categories ...
+    // check full list http://doc.prestashop.com/display/PS16/Web+service+reference
+    resource : 'products',
+    // return only fields you need
+    display  : 'id,id_default_image,name,price,description_short,condition',
+    // filter results
+    filter: {
+      name: 'blouse',
+      condition: 'new'
+    },
+    // sort results
+    sort: 'name_ASC',
+    // limit number of results or define range
+    limit: '1'
+  };
+
+  constructor(private _prestaService: PrestaService) {
+
+    // pass Query to presta service and subscribe to get results
+    this.subscription = this._prestaService.get(this.query)
+                       .subscribe(
+                          data => this.products = data[this.query.resource],
+                          error => `Error getting ${this.query.resource}: ${error.status} -> ${error.message}`
+                        );
+    }
+
+  // don't forget to unsuscribe
+  ngOnDestroy() {
+    this.subscription.unsuscribe();
+>>>>>>> 927ad77... updated to use httpclient
   }
 
 }
@@ -99,6 +180,7 @@ For now only GET method is supported, no posting or updating data is available.
 
 Query options:
 
+<<<<<<< HEAD
 - resource: **string** > Select type of results: products, categories, customers ...
 - display : **string** > Allows you to limit result fields to only those you need, by default it will return all fields
 - filter: **Object** > object defining fields and values to filter results by
@@ -106,11 +188,23 @@ Query options:
 - limit: **string** > limit number of results, or define range of results '5', '9,5'
 - search: **string** > search term to use for presta web service search
 - imageSizes: **Object** > define image sizes: cart_default, small_default, medium_default, large_default, thickbox_default, home_default, category_default
+=======
+- **resource**: string -> Select type of results: products, categories, customers ...
+- **display** : string -> Allows you to limit result fields to only those you need, by default it will return all fields
+- **filter**: Object -> object defining fields and values to filter results by
+- **sort**: string -> sort results by: 'id_ASC', 'id_DESC', 'name_ASC', 'name_DESC' ...
+- **limit**: string -> limit number of results, or define range of results '5', '9,5'
+- **search**: string -> search term to use for presta web service search
+>>>>>>> 927ad77... updated to use httpclient
 
 ### Get product categories
 
 ```typescript
+<<<<<<< HEAD
 let query: Query = {
+=======
+query: PrestaQuery = {
+>>>>>>> 927ad77... updated to use httpclient
     resource: 'categories'
   };
 ```
@@ -118,7 +212,11 @@ let query: Query = {
 ### Get products by category
 
 ```typescript
+<<<<<<< HEAD
 let query: Query = {
+=======
+query: PrestaQuery = {
+>>>>>>> 927ad77... updated to use httpclient
     resource: 'products',
     filter: {
       id_category_default: '11'
@@ -129,7 +227,11 @@ let query: Query = {
 ### Get product by id
 
 ```typescript
+<<<<<<< HEAD
 let query: Query = {
+=======
+query: PrestaQuery = {
+>>>>>>> 927ad77... updated to use httpclient
     resource: 'products',
     filter: {
       id: '1'
@@ -137,7 +239,11 @@ let query: Query = {
   };
 
   this._prestaService.get(query)
+<<<<<<< HEAD
                      .subscribe(results => this.items = results[0]);
+=======
+                     .subscribe(data => this.products = data[query.resource]);
+>>>>>>> 927ad77... updated to use httpclient
 ```
 
 ## Using search
@@ -145,35 +251,96 @@ let query: Query = {
 Search Query can accept search and resource fields. By default search will return list of products if no other resource is defined.
 
 ```typescript
+<<<<<<< HEAD
 let query: Query = {
     search: 'blouse'
   };
 
 this._prestaService.search(query)
                    .subscribe(results => this.items = results);
+=======
+import { PrestaQuery, PrestaService } from 'angular2-presta';
+import { Component, OnDestroy } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
+  providers: [PrestaService]
+})
+export class AppComponent implements OnDestroy {
+
+    // store subscription to presta webservice so we can unsuscribe later
+    subscription: any;
+
+    // List of products
+    products: Observable<any>;
+
+    // construct query
+    query: PrestaQuery = {
+      resource : 'products',
+      search: 'dress'
+    };
+
+    constructor(private _prestaService: PrestaService) {
+
+      // pass Query to presta service and subscribe to get results
+      this.subscription = this._prestaService.search(this.query)
+                         .subscribe(
+                            data => this.products = data[this.query.resource]
+                           );
+
+    }
+
+    // don't forget to unsuscribe
+    ngOnDestroy() {
+      this.subscription.unsuscribe();
+    }
+
+  }
+>>>>>>> 927ad77... updated to use httpclient
 ```
 
 ### Search categories
 
 ```typescript
+<<<<<<< HEAD
 let query: Query = {
+=======
+query: PrestaQuery = {
+>>>>>>> 927ad77... updated to use httpclient
     resource: 'categories'
     search: 'dresses'
   };
 
 this._prestaService.search(query)
+<<<<<<< HEAD
                    .subscribe(results => this.items = results);
+=======
+                   .subscribe(data => this.categories = data[query.resource]);
+>>>>>>> 927ad77... updated to use httpclient
 ```
 
 ## Outputing data
 
+<<<<<<< HEAD
 Some of the Presta web service results come with html tags included to filter out tags you can use removeTags pipe.
+=======
+Some of the Presta web service results come with html tags included to remove tags we will use innerHtml directive.
+>>>>>>> 927ad77... updated to use httpclient
 
 ```html
 <ul *ngIf="items">
   <li *ngFor="let item of items">
+<<<<<<< HEAD
     <h1>{{ item.name }}</h1>
     <p>{{ item.description_short | removeTags }}</p>
+=======
+    <h1 [innerHTML]="item.name"></h1>
+    <p [innerHTML]="item.description_short"></p>
+>>>>>>> 927ad77... updated to use httpclient
     <p>{{ item.price | currency }}<p>
   </li>
 </ul>
@@ -194,6 +361,7 @@ export const prestaConfiguration: PrestaConfiguration = {
 }
 ```
 
+<<<<<<< HEAD
 In your component:
 
 ```typescript
@@ -246,6 +414,65 @@ In your html template:
            </li>
        </ul>
   </li>
+=======
+We will use presta-image component to output product images. Presta image component has few inputs from which it constructs url from which it will construct image url.
+
+## Presta image component
+## @Inputs
+  - **resource**: string -> for which you want to get image available are
+      - general : General shop images
+      - products : Product images
+      - categories : Category images
+      - customizations : Customization images
+      - manufacturers : Manufacturer images
+      - suppliers : Supplier images
+      - stores : Store images
+
+  - **resourceID**: number -> unique resource ID for example product or category ID
+
+  - **imageID**: number -> image ID is required for product images because products have more then one image for other resource images you don't need to define it
+
+  - **size** string -> define one of available image sizes ( cart, small, medium, large,thickbox, home, category). Size is optional and if you leave it undefined component will display large images by default.
+
+Get product images in your html template using presta-image component:
+
+```html
+<ul *ngIf="products">
+  <li *ngFor="let item of products">
+
+    <!-- use presta-img component to get products default image and display it as large image -->
+    <presta-image [resource]="query.resource" [resourceID]="item.id" [imageID]="item.id_default_image" [size]="'medium'"></presta-image>
+
+    <h1 [innerHTML]="item.name"></h1>
+    <p [innerHTML]="item.description_short"></p>
+    <p>{{ item.price | currency }}<p>
+
+        <!-- get all images for this product and use small image size -->
+        <ul *ngIf="item.associations.images">
+          <li *ngFor="let image of item.associations.images">
+            <presta-image [resource]="query.resource" [resourceID]="item.id" [imageID]="image.id" [size]="'small'"></presta-image>
+          </li>
+        </ul>
+
+  </li>
+</ul>
+```
+
+Get images for other resources using presta-image component
+
+```html
+<!-- get category image passing category id -->
+<presta-image [resource]="'categories'" [resourceID]="10"></presta-image>
+
+<!-- get store image passing store id -->
+<presta-image [resource]="'stores'" [resourceID]="1"></presta-image>
+
+<!-- get supplier image passing supplier id -->
+<presta-image [resource]="'suppliers'" [resourceID]="1"></presta-image>
+
+<!-- get manufacturers image passing manufacturer id -->
+<presta-image [resource]="'manufacturers'" [resourceID]="1"></presta-image>
+>>>>>>> 927ad77... updated to use httpclient
 ```
 
 ## Roadmap
@@ -259,6 +486,22 @@ In your html template:
 
 ## Latest updates
 
+<<<<<<< HEAD
+=======
+### v0.1.11
+  - Added presta prefix to interfaces, enums etc.
+  - Presta Service is using new HttpClient from now
+  - Fixed bugs with presta-image component making it faster and more reliable
+  - Updated readme with new examples
+
+### v0.1.9
+  - Upadated presta-img component for better image loading
+  - presta-img now requires image size to be defined using ImageSize enum values to reduce errors
+  - All packages updated
+  - Better error catching
+  - Tested with Prestashop 1.7
+
+>>>>>>> 927ad77... updated to use httpclient
 ### v0.1.7
   - Fixed module exports
   - Documentation improved
@@ -286,4 +529,8 @@ In your html template:
 
 ## License
 
+<<<<<<< HEAD
 MIT © [Samir Kahvedzic](mailto:akirapowered@gmail.com)
+=======
+MIT © [Samir Kahvedzic](mailto:akirapowered@gmail.com)
+>>>>>>> 927ad77... updated to use httpclient
