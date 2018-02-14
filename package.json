@@ -1,22 +1,6 @@
 {
   "name": "angular2-presta",
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  "version": "0.1.7",
-  "scripts": {
-    "lint": "tslint src/**/*.ts",
-    "test": "tsc && karma start",
-    "prepublish": "tsc",
-    "tsc": "tsc"
-=======
-  "version": "0.1.11",
-=======
   "version": "0.1.12",
->>>>>>> 0f185f3... 0.1.12
-=======
-  "version": "0.1.13",
->>>>>>> 541c927... 0.1.13
   "scripts": {
     "build": "gulp build",
     "build:watch": "gulp",
@@ -29,7 +13,6 @@
     "playground:build": "tsc -p playground -w",
     "playground": "concurrently \"npm run build:watch\" \"npm run playground:build\" \"npm run lite\"",
     "test": "tsc && karma start"
->>>>>>> 927ad77... updated to use httpclient
   },
   "repository": {
     "type": "git",
@@ -37,15 +20,6 @@
   },
   "author": {
     "name": "Samir Kahvedzic",
-<<<<<<< HEAD
-    "email": "akirapowered@gmail.com"
-  },
-  "keywords": [
-    "angular",
-    "angular2",
-    "presta",
-    "prestashop"
-=======
     "email": "akirapowered@gmail.com",
     "url": "https://virtuooza.com"
   },
@@ -56,33 +30,11 @@
     "webservice",
     "api",
     "client"
->>>>>>> 927ad77... updated to use httpclient
   ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/SKaDiZZ/angular2-presta/issues"
   },
-<<<<<<< HEAD
-  "main": "./dist/index.js",
-  "dependencies": {},
-  "devDependencies": {
-    "@angular/common": "^2.0.0",
-    "@angular/core": "^2.0.0",
-    "@angular/http": "^2.4.3",
-    "@angular/platform-browser": "^2.4.3",
-    "@types/es6-shim": "^0.31.32",
-    "@types/jasmine": "^2.5.40",
-    "@types/protractor": "^4.0.0",
-    "@types/selenium-webdriver": "^2.53.39",
-    "codelyzer": "^0.0.28",
-    "rxjs": "^5.0.1",
-    "tslint": "^3.15.1",
-    "typescript": "2.0.2",
-    "zone.js": "0.7.2"
-  },
-  "engines": {
-    "node": ">=0.8.0"
-=======
   "devDependencies": {
     "@angular/common": "^5.0.0",
     "@angular/compiler": "^5.0.0",
@@ -125,6 +77,5 @@
   },
   "engines": {
     "node": ">=6.0.0"
->>>>>>> 927ad77... updated to use httpclient
   }
 }
