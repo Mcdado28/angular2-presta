@@ -59,7 +59,7 @@ export class AppModule { }
 import { Component, OnDestroy } from '@angular/core';
 
 // Import presta service and Query
-import { PrestaService, PrestaQuery } from './presta/presta.module';
+import { PrestaService, PrestaQuery } from 'angular2-presta';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -316,7 +316,7 @@ Get images for other resources using presta-image component
 
 ## Latest updates
 
-### v0.1.13
+### v0.1.14
   - Added presta prefix to interfaces, enums etc.
   - Presta Service is using new HttpClient from now
   - Fixed bugs with presta-image component making it faster and more reliable
